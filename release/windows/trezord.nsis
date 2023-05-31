@@ -1,0 +1,88 @@
+!include MUI2.nsh
+!include x64.nsh
+!include LogicLib.nsh
+!include WinVer.nsh
+
+
+RequestExecutionLevel admin
+
+SetCompressor bzip2
+
+Name "Trezor Bridge"
+InstallDirRegKey HKLM Software\TREZOR\Bridge InstallDir
+
+ShowInstDetails hide
+ShowUninstDetails hide
+
+XPStyle on
+
+
+Function .onInit
+UserInfo::GetAccountType
+pop $0
+${If} $0 != "admin" ;Require admin rights on NT4+
+  MessageBox mb_iconstop "You need to be an admin to install Trezor Bridge. Sorry!"
+  SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
+  Quit
+${EndIf}
+FunctionEnd
+
+Page directory
+Page instfiles
+
+DirText "Please select the installation folder."
+
+Section "Trezor Bridge"
+  SectionIn RO
+
+  DetailPrint "Stopping previous Trezor Bridge"
+  nsExec::Exec "taskkill /IM trezord.exe /F"
+
+  SetOutPath "$INSTDIR"
+  ${If} ${RunningX64}
+    File /oname=trezord.exe trezord-64b.exe
+  ${Else}
+    File /oname=trezord.exe trezord-32b.exe
+  ${EndIf}
+  File "trezord.ico"
+SectionEnd
+
+Section "Start Menu Shortcuts"
+  SetShellVarContext all
+
+  CreateDirectory "$SMPROGRAMS\TREZOR Bridge"
+  CreateShortCut "$SMPROGRAMS\TREZOR Bridge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk" "$INSTDIR\trezord.exe" "$INSTDIR\trezord.ico" 0
+  CreateShortCut "$SMSTARTUP\TREZOR Bridge.lnk" "$INSTDIR\trezord.exe" "$INSTDIR\trezord.ico" 0
+SectionEnd
+
+Var CMDRESULT
+Var CONTAINS
+
+Section "Uninstall"
+  ExecWait "taskkill /f /im trezord.exe"
+
+  Delete /rebootok "$SMSTARTUP\TREZOR Bridge.lnk"
+  Delete /rebootok "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk"
+  Delete /rebootok "$SMPROGRAMS\TREZOR Bridge\Uninstall.lnk"
+  RMDir "$SMPROGRAMS\TREZOR Bridge"
+
+  RMDir /r /rebootok "$INSTDIR\usb_driver"
+  Delete /rebootok "$INSTDIR\trezord.exe"
+  Delete /rebootok "$INSTDIR\trezord.ico"
+  Delete /rebootok "$INSTDIR\Uninstall.exe"
+  RMDir "$INSTDIR"
+SectionEnd
+
+Section -post
+  WriteUninstaller "$INSTDIR\Uninstall.exe"
+SectionEnd
+
+!define MUI_FINISHPAGE_RUN
+!define MUI_FINISHPAGE_RUN_TEXT "Start Trezor Bridge"
+!define MUI_FINISHPAGE_RUN_FUNCTION "LaunchApplication"
+!insertmacro MUI_PAGE_FINISH
+
+Function LaunchApplication
+  ExecShell "" "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk"
+FunctionEnd
