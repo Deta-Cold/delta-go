@@ -14,8 +14,8 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
 )
 
 // Devcon is a tool for listing devices and drivers on windows
@@ -66,7 +66,7 @@ func devconInfo(mw *memorywriter.MemoryWriter) (string, error) {
 	}
 
 	mw.Log("usbStrings")
-	conn, disconn, err := devconTrezorUsbStrings(mw)
+	conn, disconn, err := devcondetahardUsbStrings(mw)
 	if err != nil {
 		return "", err
 	}
@@ -108,7 +108,7 @@ func devconAllUsbStrings() ([]string, []string, error) {
 	return conn, disconn, nil
 }
 
-func devconTrezorUsbStrings(mw *memorywriter.MemoryWriter) ([]string, []string, error) {
+func devcondetahardUsbStrings(mw *memorywriter.MemoryWriter) ([]string, []string, error) {
 	allT1, err := devconUsbStringsVid(core.VendorT1, true, mw)
 	if err != nil {
 		return nil, nil, err
@@ -204,7 +204,7 @@ func runDevcon(cmd, par string, mw *memorywriter.MemoryWriter, unicode bool) (st
 func runMsinfo() (string, error) {
 	windir := os.Getenv("windir") + "\\system32\\"
 
-	tmpfile, err := ioutil.TempFile("", "trezorMsInfo")
+	tmpfile, err := ioutil.TempFile("", "detahardMsInfo")
 	if err != nil {
 		return "", err
 	}
@@ -352,8 +352,8 @@ func oldLog() (string, error) {
 	return readFile(
 		"previous log",
 		"AppData",
-		"TREZOR Bridge",
-		"trezord.log",
+		"detahard Bridge",
+		"detahardd.log",
 	)
 }
 
@@ -361,7 +361,7 @@ func libwdiReinstallLog() (string, error) {
 	return readFile(
 		"libwdi reinstall log",
 		"AppData",
-		"TREZOR Bridge",
+		"detahard Bridge",
 		"wdi-log.txt",
 	)
 }

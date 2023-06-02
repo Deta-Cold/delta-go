@@ -3,7 +3,7 @@ package status
 import (
 	"html/template"
 
-	"github.com/trezor/trezord-go/core"
+	"github.com/detahard/detahardd-go/core"
 )
 
 type statusTemplateDevice struct {
@@ -33,7 +33,7 @@ const templateString = `
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Trezor Bridge status</title>
+  <title>detahard Bridge status</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
@@ -155,7 +155,7 @@ const templateString = `
   <div id="container">
     <div class="inner-container">
       <div class="heading">
-        <h1>Trezor Bridge status</h1>
+        <h1>detahard Bridge status</h1>
         <span class="badge">Version: {{.Version}} (rev {{.Githash}})</span>
       </div>
 
@@ -170,27 +170,27 @@ const templateString = `
       {{range .Devices}}
       <div class="item">
         <h3>{{if eq .Type 0}}
-          Trezor One (HID)
+          detahard One (HID)
         {{end}}
 
         {{if eq .Type 1}}
-          Trezor One (WebUSB)
+          detahard One (WebUSB)
         {{end}}
 
         {{if eq .Type 2}}
-          Trezor One (WebUSB, bootloader)
+          detahard One (WebUSB, bootloader)
         {{end}}
 
         {{if eq .Type 3}}
-          Trezor Model T
+          detahard Model T
         {{end}}
 
         {{if eq .Type 4}}
-          Trezor Model T (bootloader)
+          detahard Model T (bootloader)
         {{end}}
 
         {{if eq .Type 5}}
-          Trezor Emulator
+          detahard Emulator
         {{end}}
 
       </h3>

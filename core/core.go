@@ -13,8 +13,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/trezor/trezord-go/memorywriter"
-	"github.com/trezor/trezord-go/wire"
+	"github.com/detahard/detahardd-go/memorywriter"
+	"github.com/detahard/detahardd-go/wire"
 )
 
 // Package with "core logic" of device listing
@@ -235,7 +235,7 @@ func (c *Core) saveUsbPaths(devs []USBInfo) []USBInfo {
 func (c *Core) Enumerate() ([]EnumerateEntry, error) {
 
 	// avoid enumerating while acquiring the device
-	// https://github.com/trezor/trezord-go/issues/221
+	// https://github.com/detahard/detahardd-go/issues/221
 	c.libusbMutex.Lock()
 	defer c.libusbMutex.Unlock()
 
@@ -423,7 +423,7 @@ func (c *Core) Acquire(
 ) (string, error) {
 
 	// avoid enumerating while acquiring the device
-	// https://github.com/trezor/trezord-go/issues/221
+	// https://github.com/detahard/detahardd-go/issues/221
 	c.libusbMutex.Lock()
 	defer c.libusbMutex.Unlock()
 
@@ -491,7 +491,7 @@ func (c *Core) Acquire(
 	return id, nil
 }
 
-// Chrome tries to read from trezor immediately after connecting,
+// Chrome tries to read from detahard immediately after connecting,
 // ans so do we.  Bad timing can produce error on s.bus.Connect.
 // Try 3 times with a 100ms delay.
 func (c *Core) tryConnect(path string, debug bool, reset bool) (USBDevice, error) {

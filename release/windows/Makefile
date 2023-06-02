@@ -1,7 +1,7 @@
 PLATFORM  = win
 BITS      = 32
 VOL_MOUNT = -v $(shell pwd):/release
-IMAGETAG  = trezord-go-build-env-$(PLATFORM)
+IMAGETAG  = detahardd-go-build-env-$(PLATFORM)
 
 IMPORT_PATH = $(shell realpath ../..)
 
@@ -15,20 +15,20 @@ clean:
 	$(info Building with crossbuild ...)
 	mkdir -p build
 	docker run --rm \
-		-v $(IMPORT_PATH):/trezord \
-		-w /trezord \
+		-v $(IMPORT_PATH):/detahardd \
+		-w /detahardd \
 		-e CGO_ENABLED=1 \
 		-e CGO_CFLAGS="-D_WIN32_WINNT=0x0600" \
 		docker.elastic.co/beats-dev/golang-crossbuild:1.19-main-debian10 \
-		--build-cmd "go build -o release/windows/build/trezord-64b.exe -ldflags=\"-H=windowsgui\"" \
+		--build-cmd "go build -o release/windows/build/detahardd-64b.exe -ldflags=\"-H=windowsgui\"" \
 		-p "windows/amd64"
 	docker run --rm \
-		-v $(IMPORT_PATH):/trezord \
-		-w /trezord \
+		-v $(IMPORT_PATH):/detahardd \
+		-w /detahardd \
 		-e CGO_ENABLED=1 \
 		-e CGO_CFLAGS="-D_WIN32_WINNT=0x0600" \
 		docker.elastic.co/beats-dev/golang-crossbuild:1.19-main-debian10 \
-		--build-cmd "go build -o release/windows/build/trezord-32b.exe -ldflags=\"-H=windowsgui\"" \
+		--build-cmd "go build -o release/windows/build/detahardd-32b.exe -ldflags=\"-H=windowsgui\"" \
 		-p "windows/386"
 	cp ../../VERSION build
 

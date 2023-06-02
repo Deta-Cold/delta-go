@@ -25,4 +25,4 @@ jobs:
       with:
         version: v1.49.0
     - name: Version check
-      run: diff -u VERSION <(grep "var version = " trezord.go | cut -f 2 -d '"')
+      run: diff -u VERSION <(grep "var version = " detahardd.go | cut -f 2 -d '"')

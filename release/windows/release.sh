@@ -7,12 +7,12 @@ cd $(dirname $0)
 TARGET=$1
 VERSION=$(cat /release/build/VERSION)
 
-INSTALLER=trezor-bridge-$VERSION-$TARGET-install.exe
+INSTALLER=detahard-bridge-$VERSION-$TARGET-install.exe
 
 cd /release/build
 
-cp /release/trezord.nsis trezord.nsis
-cp /release/trezord.ico trezord.ico
+cp /release/detahardd.nsis detahardd.nsis
+cp /release/detahardd.ico detahardd.ico
 
 # To sign for Windows, put code signing key and signature
 # to authenticode.key and authenticode.crt in this folder
@@ -20,22 +20,22 @@ cp /release/trezord.ico trezord.ico
 SIGNKEY=/release/authenticode
 
 if [ -r $SIGNKEY.key ]; then
-    for BINARY in {trezord}-{32b,64b}.exe ; do
+    for BINARY in {detahardd}-{32b,64b}.exe ; do
         mv $BINARY $BINARY.unsigned
-        osslsigncode sign -certs $SIGNKEY.crt -key $SIGNKEY.key -n "Trezor Bridge" -i "https://trezor.io/" -h sha384 -t "http://timestamp.comodoca.com?td=sha384" -in $BINARY.unsigned -out $BINARY
+        osslsigncode sign -certs $SIGNKEY.crt -key $SIGNKEY.key -n "detahard Bridge" -i "https://detahard.io/" -h sha384 -t "http://timestamp.comodoca.com?td=sha384" -in $BINARY.unsigned -out $BINARY
         osslsigncode verify -in $BINARY
     done
 fi
 
 if [ $TARGET = win32 ]; then
-    makensis -X"OutFile $INSTALLER" -X'InstallDir "$PROGRAMFILES32\TREZOR Bridge"' trezord.nsis
+    makensis -X"OutFile $INSTALLER" -X'InstallDir "$PROGRAMFILES32\detahard Bridge"' detahardd.nsis
 else
-    makensis -X"OutFile $INSTALLER" -X'InstallDir "$PROGRAMFILES64\TREZOR Bridge"' trezord.nsis
+    makensis -X"OutFile $INSTALLER" -X'InstallDir "$PROGRAMFILES64\detahard Bridge"' detahardd.nsis
 fi
 
 if [ -r $SIGNKEY.key ]; then
     mv $INSTALLER $INSTALLER.unsigned
-    osslsigncode sign -certs $SIGNKEY.crt -key $SIGNKEY.key -n "Trezor Bridge" -i "https://trezor.io/" -h sha384 -t "http://timestamp.comodoca.com?td=sha384" -in $INSTALLER.unsigned -out $INSTALLER
+    osslsigncode sign -certs $SIGNKEY.crt -key $SIGNKEY.key -n "detahard Bridge" -i "https://detahard.io/" -h sha384 -t "http://timestamp.comodoca.com?td=sha384" -in $INSTALLER.unsigned -out $INSTALLER
     osslsigncode verify -in $INSTALLER
 fi
 

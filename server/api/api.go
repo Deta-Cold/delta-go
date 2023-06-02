@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"regexp"
 
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
 
 	"github.com/gorilla/mux"
 )
 
-// This package is for serving the actual trezord API.
+// This package is for serving the actual detahardd API.
 // The actual logic of enumeration is in core package,
 // in this package, we deal with converting the data from the request
 // and then again formatting to the reply
@@ -229,11 +229,11 @@ func (a *api) call(w http.ResponseWriter, r *http.Request, mode core.CallMode, d
 }
 
 func corsValidator() OriginValidator {
-	// *.trezor.io
-	trezorRegex := regexp.MustCompile(`^https://([[:alnum:]\-_]+\.)*trezor\.io$`)
+	// *.detahard.io
+	detahardRegex := regexp.MustCompile(`^https://([[:alnum:]\-_]+\.)*detahard\.io$`)
 
-	// *.trezoriovpjcahpzkrewelclulmszwbqpzmzgub37gbcjlvluxtruqad.onion
-	trezorOnionRegex := regexp.MustCompile(`^https?://([[:alnum:]\-_]+\.)*trezoriovpjcahpzkrewelclulmszwbqpzmzgub37gbcjlvluxtruqad\.onion$`)
+	// *.detahardiovpjcahpzkrewelclulmszwbqpzmzgub37gbcjlvluxtruqad.onion
+	detahardOnionRegex := regexp.MustCompile(`^https?://([[:alnum:]\-_]+\.)*detahardiovpjcahpzkrewelclulmszwbqpzmzgub37gbcjlvluxtruqad\.onion$`)
 
 	// `localhost:8xxx` and `5xxx` are added for easing local development
 	localRegex := regexp.MustCompile(`^https?://localhost:[58][[:digit:]]{3}$`)
@@ -242,11 +242,11 @@ func corsValidator() OriginValidator {
 	develRegex := regexp.MustCompile(`^https://([[:alnum:]\-_]+\.)*sldev\.cz$`)
 
 	v := func(origin string) bool {
-		if trezorRegex.MatchString(origin) {
+		if detahardRegex.MatchString(origin) {
 			return true
 		}
 
-		if trezorOnionRegex.MatchString(origin) {
+		if detahardOnionRegex.MatchString(origin) {
 			return true
 		}
 

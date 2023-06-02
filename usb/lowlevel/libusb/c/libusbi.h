@@ -508,11 +508,11 @@ struct libusb_device {
 	struct list_head list;
 	unsigned long session_data;
 
-	// ===== START TREZOR CODE =====
+	// ===== START detahard CODE =====
 	#ifdef OS_WINDOWS
 	int has_winusb_driver;
 	#endif
-	// ===== END TREZOR CODE =====
+	// ===== END detahard CODE =====
 
 	struct libusb_device_descriptor device_descriptor;
 	usbi_atomic_t attached;

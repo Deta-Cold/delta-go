@@ -3,7 +3,7 @@ import requests
 
 def api_call(endpoint, data=None):
     API = "http://127.0.0.1:21325"
-    headers = {"origin": "https://test.trezor.io"}
+    headers = {"origin": "https://test.detahard.io"}
 
     r = requests.post(API + endpoint, headers=headers, data=data)
     if data:

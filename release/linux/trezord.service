@@ -1,11 +1,11 @@
 [Unit]
-Description=Trezor Bridge
+Description=detahard Bridge
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/trezord
-User=trezord
+ExecStart=/usr/bin/detahardd
+User=detahardd
 
 [Install]
 WantedBy=multi-user.target

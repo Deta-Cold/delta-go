@@ -5,14 +5,14 @@
 3. get list of current patches
 
    ```
-   diff -ur  ~/libusb/libusb ~/trezord-go/usb/lowlevel/libusb/c/ > ~/trezord-patchset.diff
+   diff -ur  ~/libusb/libusb ~/detahardd-go/usb/lowlevel/libusb/c/ > ~/detahardd-patchset.diff
    ```
 4. checkout the latest stable libusb
-5. `mv ~/trezord-go/usb/lowlevel/libusb/c/ ~/trezord-go/usb/lowlevel/libusb/c_old`
-6. `cp -r ~/libusb/libusb ~/trezord-go/usb/lowlevel/libusb/c`
-7. `cp ~/libusb/AUTHORS ~/libusb/COPYING ~/trezord-go/usb/lowlevel/libusb/c`
-8. `cp ~/trezord-go/usb/lowlevel/libusb/c_old/config.h ~/trezord-go/usb/lowlevel/libusb/c`
-9. try to apply the patches from ~/trezord-patchset.diff to the new code (either manually or automatically)
+5. `mv ~/detahardd-go/usb/lowlevel/libusb/c/ ~/detahardd-go/usb/lowlevel/libusb/c_old`
+6. `cp -r ~/libusb/libusb ~/detahardd-go/usb/lowlevel/libusb/c`
+7. `cp ~/libusb/AUTHORS ~/libusb/COPYING ~/detahardd-go/usb/lowlevel/libusb/c`
+8. `cp ~/detahardd-go/usb/lowlevel/libusb/c_old/config.h ~/detahardd-go/usb/lowlevel/libusb/c`
+9. try to apply the patches from ~/detahardd-patchset.diff to the new code (either manually or automatically)
 11. delete unusued files, so far:
 
     ```
@@ -27,6 +27,6 @@
     usb/lowlevel/libusb/c/os/sunos_usb.h
     ```
 
-12. `rm -r ~/trezord-go/usb/lowlevel/libusb/c_old` when all is working fine
+12. `rm -r ~/detahardd-go/usb/lowlevel/libusb/c_old` when all is working fine
 
 Note - you need to go build `go build -a` in order to "load" the new files

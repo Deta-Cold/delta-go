@@ -10,8 +10,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
 )
 
 var emulatorPing = []byte("PINGPING")
@@ -20,7 +20,7 @@ var emulatorPong = []byte("PONGPONG")
 const (
 	emulatorPrefix      = "emulator"
 	emulatorAddress     = "127.0.0.1"
-	emulatorPingTimeout = 1000 * time.Millisecond // it seems neither 500 nor 700 is enough for trezor-link
+	emulatorPingTimeout = 1000 * time.Millisecond // it seems neither 500 nor 700 is enough for detahard-link
 )
 
 type udpLowlevel struct {

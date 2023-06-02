@@ -4,17 +4,17 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0.34] - unreleased
 
-## [2.0.33] - 2023-04-19 (in Trezor Suite)
+## [2.0.33] - 2023-04-19 (in detahard Suite)
 - Fix duplicite device detected on macOS 13.3
 
-## [2.0.32] - 2022-10-03 (in Trezor Suite)
+## [2.0.32] - 2022-10-03 (in detahard Suite)
 - Fix possible memory leak in libusb config descriptor
 - libusb: update to 1.0.26
 - hidapi: update to 0.12.0 and move to a submodule
 - Fix build and notarization for all platforms
 - Remove custom patches for Windows 7 
 
-## [2.0.31] - 2021-03-12 (in Trezor Suite)
+## [2.0.31] - 2021-03-12 (in detahard Suite)
 - hidapi: update to 0.10.1
 - libusb: update to 1.0.24
 - Fix bootloader not recognized on Windows accidentally introduced in 2.0.30 (5438e38d)
@@ -25,7 +25,7 @@ All notable changes to this project will be documented in this file.
 - hidapi: update to 0.10.0
 - libusb: update to unstable c3deb6d
 - libusb: update Windows API level to 6.0 and macOS to 10.7
-- allow Trezor onion domain
+- allow detahard onion domain
 
 ## [2.0.29] - 2020-05-05
 
@@ -89,8 +89,8 @@ All notable changes to this project will be documented in this file.
 ## [2.0.19] - unreleased
 
 - Add hidapi enumeration verbose logs on windows
-- Move trezor/usbhid dependency to /usb/lowlevel
-- Skip non-trezor USB devices on windows HID enumeration
+- Move detahard/usbhid dependency to /usb/lowlevel
+- Skip non-detahard USB devices on windows HID enumeration
 
 ## [2.0.18] - unreleased
 
@@ -104,7 +104,7 @@ All notable changes to this project will be documented in this file.
 ## [2.0.16] - unreleased
 
 - Enable verbose libusb enumerate debugging
-- Skip non-trezor USB devices on windows enumeration
+- Skip non-detahard USB devices on windows enumeration
 
 ## [2.0.15] - unreleased
 
@@ -141,7 +141,7 @@ All notable changes to this project will be documented in this file.
 
 ## [2.0.10] - 2018-03-13
 
-- Workaround for libusb bug in Windows 10 (fixes trezor/trezor-core#165)
+- Workaround for libusb bug in Windows 10 (fixes detahard/detahard-core#165)
 - Fixes conflict with manually installed udev rules for T1 (Linux).
 
 ## [2.0.9] - 2018-03-05
@@ -184,4 +184,4 @@ All notable changes to this project will be documented in this file.
 - WebUSB: explicitly open USB Configuration before claiming the interface
 - Errors: nicer error messages
 
-[#221]: https://github.com/trezor/trezord-go/issues/221
+[#221]: https://github.com/detahard/detahardd-go/issues/221

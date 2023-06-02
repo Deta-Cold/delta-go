@@ -1,2 +1,2 @@
-systemctl stop trezord.service
-systemctl disable trezord.service
+systemctl stop detahardd.service
+systemctl disable detahardd.service

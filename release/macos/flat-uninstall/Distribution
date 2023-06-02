@@ -3,7 +3,7 @@
   minSpecVersion="1"
 >
   <!--displayed in the header-->
-  <title>Trezor Bridge</title>
+  <title>detahard Bridge</title>
   <!--displayed on start, can be localized-->
   <welcome
     file="welcome.txt"
@@ -17,26 +17,26 @@
   />
 
   <pkg-ref
-    id="com.bitcointrezor.pkg.TREZORBridge.uninstall"
+    id="com.bitcoindetahard.pkg.detahardBridge.uninstall"
   />
 
   <choices-outline>
     <line
-      choice="com.bitcointrezor.pkg.TREZORBridge.uninstall"
+      choice="com.bitcoindetahard.pkg.detahardBridge.uninstall"
     />
   </choices-outline>
 
   <choice
-    id="com.bitcointrezor.pkg.TREZORBridge.uninstall"
+    id="com.bitcoindetahard.pkg.detahardBridge.uninstall"
     visible="true"
-    title="Uninstall Trezor Bridge"
+    title="Uninstall detahard Bridge"
   >
     <pkg-ref
-      id="com.bitcointrezor.pkg.TREZORBridge.uninstall"
+      id="com.bitcoindetahard.pkg.detahardBridge.uninstall"
     />
   </choice>
   <pkg-ref
-    id="com.bitcointrezor.pkg.TREZORBridge.uninstall"
+    id="com.bitcoindetahard.pkg.detahardBridge.uninstall"
     version="VERSION"
     onConclusion="none"
     installKBytes="0"

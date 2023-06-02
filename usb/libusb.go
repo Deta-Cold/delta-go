@@ -7,10 +7,10 @@ import (
 	"sync"
 	"sync/atomic"
 
-	lowlevel "github.com/trezor/trezord-go/usb/lowlevel/libusb"
+	lowlevel "github.com/detahard/detahardd-go/usb/lowlevel/libusb"
 
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
 )
 
 const (
@@ -66,7 +66,7 @@ func InitLibUSB(mw *memorywriter.MemoryWriter, onlyLibusb, allowCancel, detach b
 	err := lowlevel.Init(&usb)
 	if err != nil {
 		return nil, fmt.Errorf(`error when initializing LibUSB.
-If you run trezord in an environment without USB (for example, docker or travis), use '-u=false'. For example, './trezord-go -e 21324 -u=false'.
+If you run detahardd in an environment without USB (for example, docker or travis), use '-u=false'. For example, './detahardd-go -e 21324 -u=false'.
 
 Original error: %v`, err)
 	}
@@ -394,15 +394,15 @@ func (b *LibUSB) match(dev lowlevel.Device) (bool, core.DeviceType) {
 }
 
 func (b *LibUSB) matchVidPid(vid uint16, pid uint16) bool {
-	// Note: Trezor1 libusb will actually have the T2 vid/pid
-	trezor2 := vid == core.VendorT2 && (pid == core.ProductT2Firmware || pid == core.ProductT2Bootloader)
+	// Note: detahard1 libusb will actually have the T2 vid/pid
+	detahard2 := vid == core.VendorT2 && (pid == core.ProductT2Firmware || pid == core.ProductT2Bootloader)
 
 	if b.only {
-		trezor1 := vid == core.VendorT1 && (pid == core.ProductT1Firmware)
-		return trezor1 || trezor2
+		detahard1 := vid == core.VendorT1 && (pid == core.ProductT1Firmware)
+		return detahard1 || detahard2
 	}
 
-	return trezor2
+	return detahard2
 }
 
 func (b *LibUSB) identify(dev lowlevel.Device) string {

@@ -1,13 +1,13 @@
 //go:build linux || freebsd || openbsd
 // +build linux freebsd openbsd
 
-// shim for linux and freebsd so that trezord.go builds
+// shim for linux and freebsd so that detahardd.go builds
 
 package usb
 
 import (
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
 )
 
 const HIDUse = false

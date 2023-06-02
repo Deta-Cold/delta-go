@@ -3,7 +3,7 @@
   minSpecVersion="1"
 >
   <!--displayed in the header-->
-  <title>Trezor Bridge</title>
+  <title>detahard Bridge</title>
   <!--displayed on start, can be localized-->
   <welcome
     file="welcome.txt"
@@ -17,26 +17,26 @@
   />
 
   <pkg-ref
-    id="com.bitcointrezor.pkg.TREZORBridge"
+    id="com.bitcoindetahard.pkg.detahardBridge"
   />
 
   <choices-outline>
     <line
-      choice="com.bitcointrezor.pkg.TREZORBridge"
+      choice="com.bitcoindetahard.pkg.detahardBridge"
     />
   </choices-outline>
 
   <choice
-    id="com.bitcointrezor.pkg.TREZORBridge"
+    id="com.bitcoindetahard.pkg.detahardBridge"
     visible="true"
-    title="Install Trezor Bridge"
+    title="Install detahard Bridge"
   >
     <pkg-ref
-      id="com.bitcointrezor.pkg.TREZORBridge"
+      id="com.bitcoindetahard.pkg.detahardBridge"
     />
   </choice>
   <pkg-ref
-    id="com.bitcointrezor.pkg.TREZORBridge"
+    id="com.bitcoindetahard.pkg.detahardBridge"
     version="VERSION"
     onConclusion="none"
     installKBytes="KBYTES"

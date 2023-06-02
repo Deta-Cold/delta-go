@@ -50,7 +50,7 @@ func (m *MemoryWriter) Log(s string) {
 	file := frame.File
 	file = strings.TrimPrefix(file, internalPrefix)
 	function := frame.Function
-	function = strings.TrimPrefix(function, "github.com/trezor/trezord-go/")
+	function = strings.TrimPrefix(function, "github.com/detahard/detahardd-go/")
 	r := fmt.Sprintf("[%s %d %s]", file, frame.Line, function)
 	m.println(r + " " + s)
 
@@ -111,7 +111,7 @@ func (m *MemoryWriter) Write(p []byte) (int, error) {
 }
 
 // Exports lines to a writer, plus adds additional text on top
-// In our case, additional text is devcon exports and trezord version
+// In our case, additional text is devcon exports and detahardd version
 func (m *MemoryWriter) writeTo(start string, w io.Writer) error {
 	m.mutex.Lock()
 	defer func() {

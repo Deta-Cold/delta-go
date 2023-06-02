@@ -4,7 +4,7 @@
 .Spotlight-V100
 
 # Project related
-trezord-go
+detahardd-go
 build/
 release/installers/
 release/binaries/

@@ -34,11 +34,11 @@
 #include "windows_winusb.h"
 
 
-// ===== START TREZOR CODE =====
+// ===== START detahard CODE =====
 #if defined(interface)
 #undef interface
 #endif
-// ===== END TREZOR CODE =====
+// ===== END detahard CODE =====
 
 #define HANDLE_VALID(h) (((h) != NULL) && ((h) != INVALID_HANDLE_VALUE))
 
@@ -1366,11 +1366,11 @@ static int set_composite_interface(struct libusb_context *ctx, struct libusb_dev
 	int interface_number;
 	const char *mi_str;
 
-	// ===== START TREZOR CODE =====
+	// ===== START detahard CODE =====
 	if (api == USB_API_WINUSBX) {
 		dev->has_winusb_driver = 1;
 	}
-	// ===== END TREZOR CODE =====
+	// ===== END detahard CODE =====
 
 	// Because MI_## are not necessarily in sequential order (some composite
 	// devices will have only MI_00 & MI_03 for instance), we retrieve the actual
@@ -1586,12 +1586,12 @@ static int winusb_get_device_list(struct libusb_context *ctx, struct discovered_
 			usbi_dbg(ctx, "PRO: %s", dev_id);
 #endif
 
-			// ===== START TREZOR CODE =====
+			// ===== START detahard CODE =====
 			if (strstr(dev_id, "HUB") == NULL && strstr(dev_id, HARDCODED_LIBUSB_DEVICE_FILTER) == NULL && pass != HCD_PASS && pass != HUB_PASS) {
 				usbi_warn(ctx, "Device '%s' not satisfying filter, skipping (pass %d)", dev_id, pass);
 				continue;
 			}
-			// ===== END TREZOR CODE =====
+			// ===== END detahard CODE =====
 
 			// Set API to use or get additional data from generic pass
 			api = USB_API_UNSUPPORTED;
@@ -1808,10 +1808,10 @@ static int winusb_get_device_list(struct libusb_context *ctx, struct discovered_
 					if (priv->hid == NULL)
 						LOOP_BREAK(LIBUSB_ERROR_NO_MEM);
 					break;
-				// ===== START TREZOR CODE =====
+				// ===== START detahard CODE =====
 				case USB_API_WINUSBX:
 					dev->has_winusb_driver = 1;
-				// ===== END TREZOR CODE =====
+				// ===== END detahard CODE =====
 				default:
 					// For other devices, the first interface is the same as the device
 					priv->usb_interface[0].path = _strdup(priv->path);

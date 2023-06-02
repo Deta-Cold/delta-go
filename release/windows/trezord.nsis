@@ -8,8 +8,8 @@ RequestExecutionLevel admin
 
 SetCompressor bzip2
 
-Name "Trezor Bridge"
-InstallDirRegKey HKLM Software\TREZOR\Bridge InstallDir
+Name "detahard Bridge"
+InstallDirRegKey HKLM Software\detahard\Bridge InstallDir
 
 ShowInstDetails hide
 ShowUninstDetails hide
@@ -21,7 +21,7 @@ Function .onInit
 UserInfo::GetAccountType
 pop $0
 ${If} $0 != "admin" ;Require admin rights on NT4+
-  MessageBox mb_iconstop "You need to be an admin to install Trezor Bridge. Sorry!"
+  MessageBox mb_iconstop "You need to be an admin to install detahard Bridge. Sorry!"
   SetErrorLevel 740 ;ERROR_ELEVATION_REQUIRED
   Quit
 ${EndIf}
@@ -32,44 +32,44 @@ Page instfiles
 
 DirText "Please select the installation folder."
 
-Section "Trezor Bridge"
+Section "detahard Bridge"
   SectionIn RO
 
-  DetailPrint "Stopping previous Trezor Bridge"
-  nsExec::Exec "taskkill /IM trezord.exe /F"
+  DetailPrint "Stopping previous detahard Bridge"
+  nsExec::Exec "taskkill /IM detahardd.exe /F"
 
   SetOutPath "$INSTDIR"
   ${If} ${RunningX64}
-    File /oname=trezord.exe trezord-64b.exe
+    File /oname=detahardd.exe detahardd-64b.exe
   ${Else}
-    File /oname=trezord.exe trezord-32b.exe
+    File /oname=detahardd.exe detahardd-32b.exe
   ${EndIf}
-  File "trezord.ico"
+  File "detahardd.ico"
 SectionEnd
 
 Section "Start Menu Shortcuts"
   SetShellVarContext all
 
-  CreateDirectory "$SMPROGRAMS\TREZOR Bridge"
-  CreateShortCut "$SMPROGRAMS\TREZOR Bridge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk" "$INSTDIR\trezord.exe" "$INSTDIR\trezord.ico" 0
-  CreateShortCut "$SMSTARTUP\TREZOR Bridge.lnk" "$INSTDIR\trezord.exe" "$INSTDIR\trezord.ico" 0
+  CreateDirectory "$SMPROGRAMS\detahard Bridge"
+  CreateShortCut "$SMPROGRAMS\detahard Bridge\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
+  CreateShortCut "$SMPROGRAMS\detahard Bridge\detahard Bridge.lnk" "$INSTDIR\detahardd.exe" "$INSTDIR\detahardd.ico" 0
+  CreateShortCut "$SMSTARTUP\detahard Bridge.lnk" "$INSTDIR\detahardd.exe" "$INSTDIR\detahardd.ico" 0
 SectionEnd
 
 Var CMDRESULT
 Var CONTAINS
 
 Section "Uninstall"
-  ExecWait "taskkill /f /im trezord.exe"
+  ExecWait "taskkill /f /im detahardd.exe"
 
-  Delete /rebootok "$SMSTARTUP\TREZOR Bridge.lnk"
-  Delete /rebootok "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk"
-  Delete /rebootok "$SMPROGRAMS\TREZOR Bridge\Uninstall.lnk"
-  RMDir "$SMPROGRAMS\TREZOR Bridge"
+  Delete /rebootok "$SMSTARTUP\detahard Bridge.lnk"
+  Delete /rebootok "$SMPROGRAMS\detahard Bridge\detahard Bridge.lnk"
+  Delete /rebootok "$SMPROGRAMS\detahard Bridge\Uninstall.lnk"
+  RMDir "$SMPROGRAMS\detahard Bridge"
 
   RMDir /r /rebootok "$INSTDIR\usb_driver"
-  Delete /rebootok "$INSTDIR\trezord.exe"
-  Delete /rebootok "$INSTDIR\trezord.ico"
+  Delete /rebootok "$INSTDIR\detahardd.exe"
+  Delete /rebootok "$INSTDIR\detahardd.ico"
   Delete /rebootok "$INSTDIR\Uninstall.exe"
   RMDir "$INSTDIR"
 SectionEnd
@@ -79,10 +79,10 @@ Section -post
 SectionEnd
 
 !define MUI_FINISHPAGE_RUN
-!define MUI_FINISHPAGE_RUN_TEXT "Start Trezor Bridge"
+!define MUI_FINISHPAGE_RUN_TEXT "Start detahard Bridge"
 !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchApplication"
 !insertmacro MUI_PAGE_FINISH
 
 Function LaunchApplication
-  ExecShell "" "$SMPROGRAMS\TREZOR Bridge\TREZOR Bridge.lnk"
+  ExecShell "" "$SMPROGRAMS\detahard Bridge\detahard Bridge.lnk"
 FunctionEnd

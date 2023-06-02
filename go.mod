@@ -1,4 +1,4 @@
-module github.com/trezor/trezord-go
+module github.com/detahard/detahardd-go
 
 go 1.12
 

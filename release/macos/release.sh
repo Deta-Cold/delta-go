@@ -54,10 +54,10 @@ cd $(dirname $0)
 TARGET=$1
 VERSION=$(cat /release/build/VERSION)
 
-INSTALLER=trezor-bridge-$VERSION.pkg
+INSTALLER=detahard-bridge-$VERSION.pkg
 
 mkdir -p flat-uninstall/uninstall.pkg/payload
-mkdir -p flat-install/install.pkg/payload/Applications/Utilities/TREZOR\ Bridge
+mkdir -p flat-install/install.pkg/payload/Applications/Utilities/detahard\ Bridge
 
 # first, make uninstaller
 
@@ -92,7 +92,7 @@ if [ -r $SIGN_INSTALLER_PASSPHRASE_F ]; then
 fi
 
 
-# second, make installer and add trezord and uninstaller
+# second, make installer and add detahardd and uninstaller
 
 rm -rf /release/build/flat-install
 
@@ -106,11 +106,11 @@ mv Scripts-zip Scripts
 cd payload
 
 if [ -r $SIGN_APP_PASSPHRASE_F ]; then
-    rcodesign sign --p12-file $SIGN_APP_CERT --p12-password-file $SIGN_APP_PASSPHRASE_F --code-signature-flags runtime /release/build/trezord
+    rcodesign sign --p12-file $SIGN_APP_CERT --p12-password-file $SIGN_APP_PASSPHRASE_F --code-signature-flags runtime /release/build/detahardd
 fi
 
-cp /release/build/trezord Applications/Utilities/TREZOR\ Bridge/
-cp ../../../uninstall.pkg Applications/Utilities/TREZOR\ Bridge/
+cp /release/build/detahardd Applications/Utilities/detahard\ Bridge/
+cp ../../../uninstall.pkg Applications/Utilities/detahard\ Bridge/
 
 FILES=$(find . | wc -l)
 KBYTES=$(du -k -s . | cut -f 1)

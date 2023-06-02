@@ -11,10 +11,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/trezor/trezord-go/core"
-	"github.com/trezor/trezord-go/memorywriter"
-	"github.com/trezor/trezord-go/server"
-	"github.com/trezor/trezord-go/usb"
+	"github.com/detahard/detahardd-go/core"
+	"github.com/detahard/detahardd-go/memorywriter"
+	"github.com/detahard/detahardd-go/server"
+	"github.com/detahard/detahardd-go/usb"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
@@ -125,18 +125,18 @@ func main() {
 	flag.Var(
 		&ports,
 		"e",
-		"Use UDP port for emulator. Can be repeated for more ports. Example: trezord-go -e 21324 -e 21326",
+		"Use UDP port for emulator. Can be repeated for more ports. Example: detahardd-go -e 21324 -e 21326",
 	)
 	flag.Var(
 		&touples,
 		"ed",
-		"Use UDP port for emulator with debug link. Can be repeated for more ports. Example: trezord-go -ed 21324:21326",
+		"Use UDP port for emulator with debug link. Can be repeated for more ports. Example: detahardd-go -ed 21324:21326",
 	)
 	flag.BoolVar(
 		&withusb,
 		"u",
 		true,
-		"Use USB devices. Can be disabled for testing environments. Example: trezord-go -e 21324 -u=false",
+		"Use USB devices. Can be disabled for testing environments. Example: detahardd-go -e 21324 -u=false",
 	)
 	flag.BoolVar(
 		&verbose,
@@ -159,7 +159,7 @@ func main() {
 	flag.Parse()
 
 	if versionFlag {
-		fmt.Printf("trezord version %s (rev %s)", version, githash)
+		fmt.Printf("detahardd version %s (rev %s)", version, githash)
 		return
 	}
 
@@ -229,9 +229,9 @@ func main() {
 }
 
 func printWelcomeInfo(stderrLogger *log.Logger) {
-	stderrLogger.Printf("trezord v%s (rev %s) is starting", version, githash)
+	stderrLogger.Printf("detahardd v%s (rev %s) is starting", version, githash)
 	if core.IsDebugBinary() {
-		stderrLogger.Print("!! DEBUG mode enabled! Please contact Trezor support in case you did not initiate this. !!")
+		stderrLogger.Print("!! DEBUG mode enabled! Please contact detahard support in case you did not initiate this. !!")
 	}
 }
 
