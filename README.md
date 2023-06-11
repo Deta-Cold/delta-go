@@ -114,13 +114,4 @@ There are new calls:
 * `/debug/release/SESSION` releases session
 * `/debug/call/SESSION`, `/debug/post/SESSION`, `/debug/read/SESSION` work as with normal interface
 
-The session IDs for debug link start with the string "debug".
 
-## Copyright
-
-* (C) 2018 Karel Bilek, Jan Pochyla
-* CORS Copyright (c) 2013 The Gorilla Handlers Authors, [BSD license](https://github.com/gorilla/handlers/blob/master/LICENSE)
-* (c) 2017 Jason T. Harris (also see https://github.com/deadsy/libusb for comprehensive list)
-* (C) 2017 Péter Szilágyi (also see https://github.com/karalabe/hid for comprehensive list)
-* (C) 2010-2016 Pete Batard <pete@akeo.ie> (also see https://github.com/pbatard/libwdi/ for comprehensive list)
-* Licensed under LGPLv3
